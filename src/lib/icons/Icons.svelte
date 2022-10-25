@@ -2,9 +2,9 @@
 	import * as MaterialIcons from '@mdi/js'
 	import type { IconsType } from '../shared/types'
 
-	export let name: IconsType
 	export let size: number | string = 16
 	export let color: string = 'currentColor'
+	export let name: IconsType
 
 	const width = typeof size === 'string' ? size : `${Number(size) / 16}rem`
 

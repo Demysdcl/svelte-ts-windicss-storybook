@@ -1,42 +1,25 @@
 <script>
-  import './button.css';
-  import { createEventDispatcher } from 'svelte';
-  /**
-   * Is this the principal call to action on the page?
-   */
-  export let primary = false;
+	import './button.css'
+	export let primary = false
 
-  /**
-   * What background color to use
-   */
-  export let backgroundColor;
-  /**
-   * How large should the button be?
-   */
-  export let size = 'medium';
-  /**
-   * Button contents
-   */
-  export let label = '';
+	export let backgroundColor
 
-  let mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+	export let size = 'medium'
 
-  let style = backgroundColor ? `background-color: ${backgroundColor}` : '';
+	export let label = ''
 
-  const dispatch = createEventDispatcher();
+	let mode = primary
+		? 'bg-primary-main text-neutral-lighter'
+		: 'storybook-button--secondary'
 
-  /**
-   * Optional click handler
-   */
-  function onClick(event) {
-    dispatch('click', event);
-  }
+	let style = backgroundColor ? `background-color: ${backgroundColor}` : ''
 </script>
 
 <button
-  type="button"
-  class={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-  {style}
-  on:click={onClick}>
-  {label}
+	type="button"
+	class={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+	{style}
+	on:click
+>
+	{label}
 </button>

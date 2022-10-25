@@ -1,5 +1,7 @@
 const { mergeConfig } = require('vite')
 const preprocess = require('svelte-preprocess')
+const WindiCSS = require('vite-plugin-windicss').default
+const path = require('path')
 
 module.exports = {
 	stories: [
@@ -28,6 +30,12 @@ module.exports = {
 	},
 	async viteFinal(config) {
 		const defaultConfig = (await import('../vite.config.js')).default
+		config.plugins = config.plugins ?? []
+		config.plugins.push(
+			WindiCSS({
+				config: path.join(__dirname, '..', 'windi.config.ts'), // that was my missing piece
+			}),
+		)
 
 		return mergeConfig(config, {
 			resolve: defaultConfig.resolve,
